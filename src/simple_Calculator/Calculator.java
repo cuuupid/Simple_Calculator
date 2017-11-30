@@ -87,11 +87,15 @@ public class Calculator {
 		} else {
 			return rv;
 		}
+
 	}
 
 	public static double root(double a) {
 		// Implement functionality for root function
-		return 0;
+		if (a < 0) {
+			throw new IllegalArgumentException("You can not take the root of a negative number");
+		}
+		return Math.sqrt(a);
 	}
 
 }

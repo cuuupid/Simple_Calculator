@@ -51,8 +51,7 @@ public class Calculator {
 	}
 
 	public static double square(double a) {
-		// Implement functionality for square function
-		return 0;
+		return a*a;
 	}
 
 	public static double root(double a) {

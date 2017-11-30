@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ PowerOfTest.class, AdditionTest.class, SubtractionTest.class, MultiplicationTest.class, SquareTest.class })
+@SuiteClasses({ PowerOfTest.class, AdditionTest.class, SubtractionTest.class, MultiplicationTest.class, SquareTest.class, RootTest.class })
 public class AllTests {
 
 }

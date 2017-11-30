@@ -11,7 +11,7 @@ public class Calculator {
 
 	public static double multiplication(double a, double b) {
 		// Implement functionality for multiplication
-		return a*b;
+		return a * b;
 	}
 
 	public static double division(double a, double b) {
@@ -51,11 +51,14 @@ public class Calculator {
 	}
 
 	public static double square(double a) {
-		return a*a;
+		return a * a;
 	}
 
 	public static double root(double a) {
 		// Implement functionality for root function
-		return 0;
+		if (a < 0) {
+			throw new IllegalArgumentException("You can not take the root of a negative number");
+		}
+		return Math.sqrt(a);
 	}
 }

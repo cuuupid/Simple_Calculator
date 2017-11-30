@@ -6,8 +6,7 @@ public class Calculator {
 	}
 
 	public static double subtraction(double a, double b) {
-		// Implement functionality for subtraction
-		return 0;
+		return a - b;
 	}
 
 	public static double multiplication(double a, double b) {

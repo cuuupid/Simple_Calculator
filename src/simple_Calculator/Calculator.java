@@ -12,7 +12,7 @@ public class Calculator {
 
 	public static double multiplication(double a, double b) {
 		// Implement functionality for multiplication
-		return 0;
+		return a*b;
 	}
 
 	public static double division(double a, double b) {

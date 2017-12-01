@@ -7,51 +7,51 @@ import simple_Calculator.Calculator;
 public class AdditionTest {
 
 	@org.junit.Test
-	public void additionWithTwoPositiveIntegers() throws Exception{
+	public void additionWith_TwoPositiveIntegers() throws Exception{
 		assertEquals(10, Calculator.addition(5, 5), 0.0000001);
 	}
 
 	@org.junit.Test
-	public void additionWithTwoPositiveDoubles() throws Exception{
+	public void additionWith_TwoPositiveDoubles() throws Exception{
 		assertEquals(10.5, Calculator.addition(5.4, 5.1), 0.0000001);
 	}
 
 	@org.junit.Test
-	public void additionWithZeroAndPositiveInteger() throws Exception{
+	public void additionWith_ZeroAndPositiveInteger() throws Exception{
 		assertEquals(10, Calculator.addition(0, 10), 0.0000001);
 		assertEquals(10, Calculator.addition(10, 0), 0.0000001);
 	}
 
 	@org.junit.Test
-	public void additionWithZeroAndPositiveDouble() throws Exception{
+	public void additionWith_ZeroAndPositiveDouble() throws Exception{
 		assertEquals(10.1, Calculator.addition(0, 10.1), 0.0000001);
 		assertEquals(10.3, Calculator.addition(10.3, 0), 0.0000001);
 	}
 
 	@org.junit.Test
-	public void additionWithTwoNegativeIntegers() throws Exception{
+	public void additionWith_TwoNegativeIntegers() throws Exception{
 		assertEquals(-12, Calculator.addition(-7, -5), 0.0000001);
 	}
 
 	@org.junit.Test
-	public void additionWithTwoNegativeDoubles() throws Exception{
+	public void additionWith_TwoNegativeDoubles() throws Exception{
 		assertEquals(-10.5, Calculator.addition(-5.4, -5.1), 0.0000001);
 	}
 
 	@org.junit.Test
-	public void additionWithZeroAndNegativeInteger() throws Exception{
+	public void additionWith_ZeroAndNegativeInteger() throws Exception{
 		assertEquals(-5, Calculator.addition(0, -5), 0.0000001);
 		assertEquals(-5, Calculator.addition(-5, 0), 0.0000001);
 	}
 
 	@org.junit.Test
-	public void additionWithZeroAndNegativeDouble() throws Exception{
+	public void additionWith_ZeroAndNegativeDouble() throws Exception{
 		assertEquals(-10.45, Calculator.addition(0, -10.45), 0.0000001);
 		assertEquals(-10.3, Calculator.addition(-10.3, 0), 0.0000001);
 	}
 
 	@org.junit.Test
-	public void additionWithZeroes() throws Exception{
+	public void additionWith_Zeroes() throws Exception{
 		assertEquals(0, Calculator.addition(0, 0), 0.0000001);
 	}
 

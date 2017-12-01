@@ -16,7 +16,7 @@ public class Calculator {
 
 	public static double division(double a, double b) {
 		// Implement functionality for division
-		return 0;
+		return a/b;
 	}
 
 	public static double powerOf(double base, int exponent) {

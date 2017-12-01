@@ -100,6 +100,4 @@ public class AdditionTest {
 	public void additionWithOverflow() throws Exception{
 		Calculator.addition(Double.MAX_VALUE, Double.MAX_VALUE);
 	}
-	
-
 }

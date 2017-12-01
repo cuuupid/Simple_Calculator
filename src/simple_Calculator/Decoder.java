@@ -9,19 +9,20 @@ public class Decoder {
 	private final int LOW = 1; // Addition and subtraction
 	private final int MEDIUM = 2; // Multiplication and division
 	private final int HIGH = 3; // Power Of
+	private final int UNARY = 4; // sqrt and -
 
 	private final char[] brackets = { '(', ')' };
 	private final char[] lowPresedenceOperators = { '+', '-' };
 	private final char[] mediumPresedenceOperators = { 'x', '*', '/', '÷' };
 	private final char[] highPresedenceOperators = { '^' };
 	private final char[] rightAssociativeOperators = { '^' };
+	private final char[] unaryOperators = {  };
 
 	public String generatePostfixNotationString(String expression) {
 		Stack<String> operators = new Stack<>();
 		Queue<String> output = new LinkedList<>();
-		
+
 		String infixString = prepareString(expression);
-		System.out.println(infixString);
 		String[] tokens = infixString.split("\\s+");
 		for (String token : tokens) {
 			if (isNumber(token)) {
@@ -74,7 +75,10 @@ public class Decoder {
 				stack.push(Double.parseDouble(token));
 			} else {
 				double right = stack.pop();
-				double left = stack.pop();
+				double left = 0;
+				if (!stack.isEmpty()) {
+					left = stack.pop();
+				}
 				switch (token) {
 				case "+":
 					stack.push(Calculator.addition(left, right));
@@ -86,20 +90,20 @@ public class Decoder {
 					stack.push(Calculator.multiplication(left, right));
 					break;
 				case "/":
-					stack.push(Calculator.division(left, right));
+					stack.push(left/right);
 					break;
 				case "^":
-					if((int)right != right){
+					if ((int) right != right) {
 						throw new IllegalArgumentException("We dont tolerate none integer exponents");
 					}
-					stack.push(Calculator.powerOf(left, (int)right));
+					stack.push(Calculator.powerOf(left, (int) right));
 					break;
 				default:
 					throw new IllegalArgumentException("String contains unexpected characters");
 				}
 			}
 		}
-		if(stack.size() != 1){
+		if (stack.size() != 1) {
 			throw new IllegalArgumentException("Not a valid expression!");
 		}
 		return stack.pop();
@@ -118,6 +122,8 @@ public class Decoder {
 			return HIGH;
 		} else if (tokenExistsInArray(token, brackets)) {
 			return NONE;
+		} else if (tokenExistsInArray(token, unaryOperators)) {
+			return UNARY;
 		} else {
 			throw new IllegalArgumentException("The token is not a known operator!");
 		}
@@ -136,8 +142,7 @@ public class Decoder {
 	}
 
 	public static void main(String[] args) {
-		Decoder decoder = new Decoder();
-		System.out.println(decoder.prepareString("3,0 ^ 5 + 4 x 2 / ( 1 - 5 ) ^ 2 ^ 3"));
-		System.out.println(decoder.generatePostfixNotationString("7 x 2 - ( 3 - 9 ) ^ 2"));
+		Decoder d = new Decoder();
+		System.out.println(d.calculatePostfixNotationString(d.generatePostfixNotationString("5 ^ ( 2 + 2 ) * 2 + 5")));
 	}
 }

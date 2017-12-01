@@ -15,6 +15,7 @@ public class DecoderTests {
 		assertEquals("7 7 - 7 - 7 2 * - 3 9 - 2 ^ -", decoder.generatePostfixNotationString("7 - 7 - 7 - 7 x 2 - ( 3 - 9 ) ^ 2"));
 		assertEquals("3 4 2 * 1 5 - 2 3 ^ ^ / +", decoder.generatePostfixNotationString("3 + 4 x 2 ÷ ( 1 - 5 ) ^ 2 ^ 3"));
 		assertEquals("3 5 ^ 4 2 * 1 5 - 2 3 ^ ^ / +", decoder.generatePostfixNotationString("3 ^ 5 + 4 x 2 / ( 1 - 5 ) ^ 2 ^ 3"));
+
 		
 		double ans = decoder.calculatePostfixNotationString(decoder.generatePostfixNotationString("7 x 2 - ( 3 - 9 ) ^ 2"));
 		assertEquals(-22, ans, 0.000001);

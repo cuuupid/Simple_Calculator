@@ -16,27 +16,40 @@ public class Decoder {
 	private final char[] mediumPresedenceOperators = { 'x', '*', '/', '÷' };
 	private final char[] highPresedenceOperators = { '^' };
 	private final char[] rightAssociativeOperators = { '^' };
-	private final char[] unaryOperators = {  };
+	private final char[] unaryOperators = {};
 
-	public String generatePostfixNotationString(String expression) {
+	public String shuntingYardAlgorithm(String expression) {
 		Stack<String> operators = new Stack<>();
 		Queue<String> output = new LinkedList<>();
 
-		String infixString = prepareString(expression);
-		String[] tokens = infixString.split("\\s+");
+		String[] tokens = prepareStringAndTokenize(expression);
 		for (String token : tokens) {
 			if (isNumber(token)) {
 				output.add(token);
 				continue;
 			}
+			// The token is a operator or a bracket.
 			int presedence = getPresedence(token);
-			if (!token.equals(")")) {
-				while (!operators.isEmpty() && presedence <= getPresedence(operators.peek()) && !token.equals("(")
+			if (!token.equals(")") && !token.equals("(")) {
+				// while (there is an operator at the top of the operator stack with
+				// greater precedence) or (the operator at the top of the operator stack has
+				// equal precedence and the operator is left associative) and
+				// (the operator at the top of the stack is not a left bracket):
+				// pop operators from the operator stack, onto the output queue.
+				// push the read operator onto the operator stack.
+				while (!operators.isEmpty() && presedence <= getPresedence(operators.peek())
 						&& !tokenExistsInArray(token, rightAssociativeOperators)) {
 					output.add(operators.pop());
 				}
 				operators.push(token);
-			} else if (token.equals(")")) {
+			}
+			//If left bracket just push it to stack
+			if (token.equals("(")) {
+				operators.push(token);
+			}
+			//If right bracket we pop the operator stack to output
+			//until we find left bracket and then throw the brackets away.
+			else if (token.equals(")")) {
 				while (!operators.peek().equals("(")) {
 					output.add(operators.pop());
 				}
@@ -47,6 +60,7 @@ public class Decoder {
 				operators.pop();
 			}
 		}
+		//When done pop all remaining operators to output
 		while (!operators.isEmpty()) {
 			String t = operators.pop();
 			if (tokenExistsInArray(t, brackets)) {
@@ -62,13 +76,15 @@ public class Decoder {
 		return returnString.trim();
 	}
 
-	private String prepareString(String expression) {
-		String infixString = expression.replace('x', '*').replace('÷', '/').replace(',', '.');
-		return infixString;
+	private String[] prepareStringAndTokenize(String expression) {
+		String tokens = expression.replace('x', '*').replace('÷', '/').replace(',', '.');
+		return tokens.split("\\s+");
 	}
-
+	
 	public double calculatePostfixNotationString(String expression) {
-		String[] tokens = expression.split("\\s+");
+		/* push numbers to stack. if operator pop numbers and use the operator with them and push answer to stack and repeat.
+		 * operator = x, right = stack.pop() left = stack.pop() stack.push(left x right)*/
+		String[] tokens = prepareStringAndTokenize(expression);
 		Stack<Double> stack = new Stack<>();
 		for (String token : tokens) {
 			if (isNumber(token)) {
@@ -90,11 +106,11 @@ public class Decoder {
 					stack.push(Calculator.multiplication(left, right));
 					break;
 				case "/":
-					stack.push(left/right);
+					stack.push(left / right);
 					break;
 				case "^":
 					if ((int) right != right) {
-						throw new IllegalArgumentException("We dont tolerate none integer exponents");
+						throw new IllegalArgumentException("We don't tolerate none integer exponents");
 					}
 					stack.push(Calculator.powerOf(left, (int) right));
 					break;
@@ -139,10 +155,5 @@ public class Decoder {
 			}
 		}
 		return false;
-	}
-
-	public static void main(String[] args) {
-		Decoder d = new Decoder();
-		System.out.println(d.calculatePostfixNotationString(d.generatePostfixNotationString("5 ^ ( 2 + 2 ) * 2 + 5")));
 	}
 }

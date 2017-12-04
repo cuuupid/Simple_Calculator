@@ -2,25 +2,45 @@ package simple_Calculator;
 
 public class Calculator {
 	public static double addition(double a, double b) {
-		return a + b;
+		double rv = a + b;
+		if (rv == Double.POSITIVE_INFINITY || rv == Double.NEGATIVE_INFINITY) {
+			throw new ArithmeticException("Overflow!");
+		} else {
+			return rv;
+		}
 	}
 
 	public static double subtraction(double a, double b) {
-		return a - b;
+		double rv = a - b;
+		if (rv == Double.POSITIVE_INFINITY || rv == Double.NEGATIVE_INFINITY) {
+			throw new ArithmeticException("Overflow!");
+		} else {
+			return rv;
+		}
 	}
 
 	public static double multiplication(double a, double b) {
-		// Implement functionality for multiplication
-		return a*b;
+		double rv = a * b;
+		if (rv == Double.POSITIVE_INFINITY || rv == Double.NEGATIVE_INFINITY) {
+			throw new ArithmeticException("Overflow!");
+		} else {
+			return rv;
+		}
 	}
 
 	public static double division(double a, double b) {
-		// Implement functionality for division
-		return 0;
+		if(b == 0) {
+			throw new IllegalArgumentException("Can't divide by zero");
+		}
+		double rv = a / b;
+		if (rv == Double.POSITIVE_INFINITY || rv == Double.NEGATIVE_INFINITY) {
+			throw new ArithmeticException("Overflow!");
+		} else {
+			return rv;
+		}
 	}
 
 	public static double powerOf(double base, int exponent) {
-		// Implement functionality for powerOf
 		if (exponent == 0) {
 			return 1.0;
 		} else if (base == 0) {
@@ -28,11 +48,21 @@ public class Calculator {
 		} else if (base == 1) {
 			return 1.0;
 		} else if (exponent > 0) {
-			return powerOfPositiveExponent(base, exponent);
+			double rv = powerOfPositiveExponent(base, exponent);
+			if (rv == Double.POSITIVE_INFINITY || rv == Double.NEGATIVE_INFINITY) {
+				throw new ArithmeticException("Overflow!");
+			} else {
+				return rv;
+			}
 		} else if (exponent < 0) {
-			return powerOfNegativeExponent(base, exponent);
+			double rv = powerOfNegativeExponent(base, exponent);
+			if (rv == Double.POSITIVE_INFINITY || rv == Double.NEGATIVE_INFINITY) {
+				throw new ArithmeticException("Overflow!");
+			} else {
+				return rv;
+			}
 		} else {
-			throw new ArithmeticException();
+			throw new ArithmeticException("ERROR!");
 		}
 	}
 
@@ -51,11 +81,17 @@ public class Calculator {
 	}
 
 	public static double square(double a) {
-		return a*a;
+		double rv = a * a;
+		if (rv == Double.POSITIVE_INFINITY || rv == Double.NEGATIVE_INFINITY) {
+			throw new ArithmeticException("Overflow!");
+		} else {
+			return rv;
+		}
 	}
 
 	public static double root(double a) {
 		// Implement functionality for root function
 		return 0;
 	}
+
 }

@@ -20,12 +20,17 @@ public class Calculator {
 	}
 
 	public static double multiplication(double a, double b) {
+<<<<<<< HEAD
 		double rv = a * b;
 		if (rv == Double.POSITIVE_INFINITY || rv == Double.NEGATIVE_INFINITY) {
 			throw new ArithmeticException("Overflow!");
 		} else {
 			return rv;
 		}
+=======
+		// Implement functionality for multiplication
+		return a * b;
+>>>>>>> 5cc707f3033efb688ea8dd60bdbc06c7fd4f49d6
 	}
 
 	public static double division(double a, double b) {
@@ -81,17 +86,26 @@ public class Calculator {
 	}
 
 	public static double square(double a) {
+<<<<<<< HEAD
 		double rv = a * a;
 		if (rv == Double.POSITIVE_INFINITY || rv == Double.NEGATIVE_INFINITY) {
 			throw new ArithmeticException("Overflow!");
 		} else {
 			return rv;
 		}
+
+=======
+		return a * a;
+>>>>>>> 5cc707f3033efb688ea8dd60bdbc06c7fd4f49d6
 	}
 
 	public static double root(double a) {
 		// Implement functionality for root function
-		return 0;
+		if (a < 0) {
+			throw new IllegalArgumentException("You can not take the root of a negative number");
+		}
+		
+		return Math.sqrt(a);
 	}
 
 }

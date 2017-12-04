@@ -95,6 +95,7 @@ public class Calculator {
 		if (a < 0) {
 			throw new IllegalArgumentException("You can not take the root of a negative number");
 		}
+		
 		return Math.sqrt(a);
 	}
 

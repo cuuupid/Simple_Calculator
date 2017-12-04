@@ -29,6 +29,9 @@ public class Calculator {
 	}
 
 	public static double division(double a, double b) {
+		if(b == 0) {
+			throw new IllegalArgumentException("Can't divide by zero");
+		}
 		double rv = a / b;
 		if (rv == Double.POSITIVE_INFINITY || rv == Double.NEGATIVE_INFINITY) {
 			throw new ArithmeticException("Overflow!");

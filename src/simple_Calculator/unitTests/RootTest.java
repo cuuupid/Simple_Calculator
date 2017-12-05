@@ -14,6 +14,11 @@ public class RootTest {
     public void rootWith_PositiveDouble() {
         assertEquals(2.28035085, Calculator.root(5.2), 0.0000001);
     }
+    
+    @org.junit.Test
+    public void rootWith_PositiveDoubleUnderTwo() {
+        assertEquals(1.34164078, Calculator.root(1.8), 0.0000001);
+    }
 
     @org.junit.Test(expected = IllegalArgumentException.class)
     public void rootWith_NegativeInteger() {

@@ -89,13 +89,22 @@ public class Calculator {
 		}
 	}
 
+	//Babylonian method to find an approx to the square-root
 	public static double root(double a) {
-		// Implement functionality for root function
+		//Root of number < 0 uses imaginary number which can't be calculated with this algoritm
 		if (a < 0) {
 			throw new IllegalArgumentException("You can not take the root of a negative number");
 		}
 
-		return Math.sqrt(a);
+		double estimatedRoot = a; //Used to calculate the root
+		double epsilon = 0.00000001; // Accepted error
+
+		//Algoritm start from the input-value and gets less and less until it comes close enough
+		while (estimatedRoot - a / estimatedRoot > epsilon) {
+			estimatedRoot = (((a / estimatedRoot) + estimatedRoot) / 2);
+		}
+		
+		return estimatedRoot;
 	}
 
 }

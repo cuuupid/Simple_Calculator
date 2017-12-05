@@ -107,4 +107,15 @@ public class Calculator {
 		return estimatedRoot;
 	}
 
+	public static double floor(double a) {
+		double rv = a - (a % 1);
+		if (rv == Double.POSITIVE_INFINITY || rv == Double.NEGATIVE_INFINITY)
+			throw new ArithmeticException("Overflow!");
+		return rv;
+	}
+
+	public static double ceil(double a) {
+		return -floor(-a);
+	}
+
 }
